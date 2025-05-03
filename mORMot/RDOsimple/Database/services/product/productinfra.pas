@@ -19,6 +19,7 @@ uses
 {$endif FPC_EXTRECORDRTTI}
 
 type
+  // dto
   TOrmProduct = class(TOrm)
   protected
     fProductCode       : RawUTF8;

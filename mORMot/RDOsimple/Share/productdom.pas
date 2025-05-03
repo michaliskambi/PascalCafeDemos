@@ -113,6 +113,7 @@ Var
   F : file of byte;
 begin
   result:=0;
+  Exit;
   assign (F,FileName);
   try
     reset(F);

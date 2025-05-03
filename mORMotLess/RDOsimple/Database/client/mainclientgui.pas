@@ -160,6 +160,12 @@ end;
 procedure TProductVisual.GetAll(const aValue:TProduct);
 begin
   //AValue.ProductCode:=Form1.EditProductCode.Text;
+  // fix on empty database
+  if AValue = nil then
+  begin
+    //Writeln('TProductVisual.GetAll');
+    Exit;
+  end;
   AValue.Brand:=Form1.EditBrand.Text;
   AValue.Model:=Form1.EditModel.Text;
 end;
@@ -259,6 +265,9 @@ var
   ProductDocument:TProductDocument;
 begin
   aDropTarget:=FindControlAtPosition(Mouse.CursorPos, false);
+  // TODO aDropTarget always nil on LCL GTK2, hack to assign target
+  if aDropTarget = nil then
+    aDropTarget := FrontImage;
   if NOT Assigned(aDropTarget) then exit;
 
   c := Length(FileNames);
@@ -413,7 +422,7 @@ procedure TForm1.btnAddProductClick(Sender: TObject);
 var
   LocalProduct : TProduct;
 begin
-  if Products.AddOrUpdate('NewProduct',true,LocalProduct) then
+  if Products.AddOrUpdate('NewProduct' + IntToStr(Random(1000)),true,LocalProduct) then
   begin
     //GetDataFromGridRow(nil,1);
     SharedmORMotData.AddProduct(LocalProduct);

@@ -85,7 +85,9 @@ begin
           DataBaseServer := TServer.Create({HTTPServer=}true);
         end;
         try
-          DataBaseConnection:=TClient.Create('localhost');
+          DataBaseConnection:=TClient.Create(
+            //'192.168.21.158');
+            'localhost');
           with DataBaseConnection AS TClient do
           begin
             if (ClientConnected) then
@@ -172,6 +174,7 @@ function TSharedmORMotDDD.UpdateProductCode(const Product: TProduct; const NewCo
 begin
   result:=false;
   if (NOT fConnected) then exit;
+  // TODO product = nil possible on empty database, fix
   result:=(ProductService.UpdateProductCode(Product.Code,NewCode) = seSuccess);
 end;
 

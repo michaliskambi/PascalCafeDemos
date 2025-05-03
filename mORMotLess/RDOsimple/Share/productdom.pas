@@ -46,6 +46,7 @@ type
     function AddOrUpdate(const Target: TDocumentTarget; const AddIfNotFound:boolean; out aDocument:TProductDocument): boolean;
   end;
 
+// rdo, rich data object
   TProduct = class(TCollectionItem)
   strict private
     fProductCode       : RawUTF8;
@@ -259,7 +260,7 @@ begin
   aBattery:=nil;
   for TCollectionItem(BatteryRunner) in Self do
   begin
-    if (BatteryRunner.ProductCode=ABC) then
+    if (BatteryRunner.ProductCode=ABC) then // note: linear search
     begin
       aBattery:=BatteryRunner;
       result:=false;

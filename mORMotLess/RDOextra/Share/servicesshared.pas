@@ -4,7 +4,7 @@ interface
 
 const
   HTTP_PORT = '11111';
-  HTTP_URL = '192.168.2.12';  
+  HTTP_URL = '192.168.2.12';
   EXAMPLE_CONTRACT = 'MyContractName';
   BATTERY_DATABASE_FILENAME = 'hallo1.db3';
   DOCUMENT_DATABASE_FILENAME = 'docs.db3';

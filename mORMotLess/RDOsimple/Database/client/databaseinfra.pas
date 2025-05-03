@@ -236,6 +236,8 @@ end;
 function TSharedmORMotDDD.UpdateProductCode(const Product: TProduct; const NewCode:RawUTF8):boolean;
 begin
   result:=false;
+  // Product = nil possible on empty database
+  if Product = nil then Exit;
   if (Product.ProductCode<>NewCode) then
   begin
     Product.ProductCode:=NewCode;
@@ -248,6 +250,12 @@ end;
 function TSharedmORMotDDD.UpdateProduct(const Product: TProduct; const FieldInfo:RawUTF8):boolean;
 begin
   result:=false;
+  // Product = nil possible on empty database
+  if Product = nil then
+  begin
+    //Writeln('TSharedmORMotDDD.UpdateProduct Product=nil');
+    Exit;
+  end;
   if (FieldInfo='*') then
   begin
     // As we do not check for changes of the data, this update will also be triggered when the edit leaves the focus

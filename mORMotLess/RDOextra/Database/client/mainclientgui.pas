@@ -263,6 +263,10 @@ var
   ProductDocument:TProductDocument;
 begin
   aDropTarget:=FindControlAtPosition(Mouse.CursorPos, false);
+  // TODO aDropTarget always nil on LCL GTK2, hack to assign target
+  if aDropTarget = nil then
+    aDropTarget := FrontImage;
+
   if NOT Assigned(aDropTarget) then exit;
 
   c := Length(FileNames);
@@ -417,7 +421,7 @@ procedure TForm1.btnAddProductClick(Sender: TObject);
 var
   LocalProduct : TProduct;
 begin
-  if Products.AddOrUpdate('NewProduct',true,LocalProduct) then
+  if Products.AddOrUpdate('NewProduct' + IntToStr(Random(1000)),true,LocalProduct) then
   begin
     //GetDataFromGridRow(nil,1);
     LocalProduct.Init;

@@ -2,9 +2,11 @@ unit servicesshared;
 
 interface
 
+uses mormot.core.base;
+
 const
   HTTP_PORT = '11111';
-  HTTP_URL = '192.168.2.12';  
+  HTTP_URL = '192.168.2.12';
   EXAMPLE_CONTRACT = 'MyContractName';
   BATTERY_DATABASE_FILENAME = 'hallo1.db3';
   DOCUMENT_DATABASE_FILENAME = 'docs.db3';
@@ -16,6 +18,7 @@ type
 
   TBlobber = type RawByteString;
   //TBlobber = mormot.core.base.RawBlob;
+  //TBlobber = System.RawByteString;
 
   TServiceResult = (
     seSuccess, seNotFound, seMissingField, sePersistenceError);
